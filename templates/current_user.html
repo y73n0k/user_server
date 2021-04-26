@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1 class="text-center">{{ name }} ({{ slug }})</h1>
+                <table class="table table-hover">
+                    <tbody>
+                    {% for video in videos %}
+                        <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
+                        <td>{{ video.description }}</td>
+                        <td>{{ video.upload_date }}</td>
+                        <td><a class="btn btn-danger" href="{{ url_for('delete_video', short_name=video.short_name) }}" role="button">Удалить</a></td>
+                    {% endfor %}
+                    </tbody>
+            </div>
+            <div class="col-sm">
+                <form method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.title.label }}<br>
+                        {{ form.title(class="form-control", type="text") }}<br>
+                        {% for error in form.title.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>
+                        {{ form.description.label }}<br>
+                        {{ form.description(class="form-control", type="text") }}<br>
+                        {% for error in form.description.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>
+                        {{ form.authors.label }}<br>
+                        {{ form.authors(class="form-control", type="text") }}<br>
+                        {% for error in form.authors.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>
+                        {{ form.video.label }}<br>
+                        {{ form.video(class="form-control-file", type="file") }}<br>
+                        {% for error in form.video.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

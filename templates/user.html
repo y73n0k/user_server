@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if error %}
+        <h1 class="alert alert-danger">{{ error }}</h1>
+    {% else %}
+        <h1 class="text-center">{{ user.name }} ({{ user.slug }})</h1>
+        <table class="table table-hover">
+        <tbody>
+        {% for video in user.videos %}
+            <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
+            <td>{{ video.description }}</td>
+            <td>{{ video.upload_date }}</td>
+        {% endfor %}
+        </tbody>
+    {% endif %}
+{% endblock %}

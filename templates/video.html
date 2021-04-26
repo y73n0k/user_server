@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    {%  if not error %}
+        <h1 class="text-success text-center">{{ video.title }}</h1>
+        <div style="display: flex; justify-content: center">
+            <video controls style="width: 100%; height: auto">
+                <source src="{{ video.url }}">
+            </video>
+        </div>
+        <div class="text-warning">
+            Authors:<br>
+            {% for author in video.authors %}
+                <a href="{{ url_for('user', slug=author.slug) }}">{{ author.name }}</a><br>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="text-secondary">
+            Description:<br>
+            {{ video.description }}<br><br>
+            {{ video.upload_date }}
+        </div>
+        <h3>Комментарии</h3>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.text.label }}<br>
+                {{ form.text(class="form-control", type="text") }}<br>
+                {% for error in form.text.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        </form>
+        <div class="rounded" style="background: #FFFDE7">
+            {% for comment in video.comments %}
+                <p style="background: #E3F2FD" class="rounded"><a href="{{ url_for('user', slug=comment.author) }}">{{ comment.author }}</a><br>
+                    {{ comment.text }}<br>
+                    {{ comment.created_date }}
+                    {% if comment.author == slug %}
+                        <a class="btn btn-danger" href="{{ url_for('delete_comment', id=comment.id) }}" role="button">Удалить</a>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1 class="alert alert-danger">{{ error }}</h1>
+    {% endif %}
+{% endblock %}

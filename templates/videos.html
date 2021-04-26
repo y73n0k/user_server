@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <table class="table table-hover">
+        <tbody>
+        {% for video in all_videos %}
+            <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
+            <td>{{ video.description }}</td>
+            <td>{{ video.upload_date }}</td>
+            <td>{% for author in video.authors %}
+               <a href="{{ url_for('user', slug=author.slug) }}">{{ author.slug }}</a>
+            {% endfor %}</td>
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
