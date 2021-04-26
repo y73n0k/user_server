@@ -179,7 +179,7 @@ def watch(slug):
         )
     video["url"] = DATABASE_URL + video["url"]
     return render_template(
-        "video.html", form=form, is_auth=is_auth, video=video, **user_data
+        "video.html", form=form, title=video["title"], is_auth=is_auth, video=video, **user_data
     )
 
 
