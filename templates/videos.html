@@ -9,7 +9,7 @@
             <td>{{ video.upload_date }}</td>
             <td>
             {% for author in video.authors %}
-                <a href="{{ url_for('user', slug=author.slug) }}">{{ author.slug }}</a></td>
+                <a href="{{ url_for('user', slug=author.slug) }}">{{ author.slug }}</a>
             {% endfor %}
             </td>
          <tr>
