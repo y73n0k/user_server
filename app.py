@@ -1,4 +1,3 @@
-import ssl
 import os
 import requests
 from flask import Flask, session, abort, render_template, redirect, request
@@ -11,7 +10,7 @@ from forms.videos import VideoForm
 app = Flask(__name__)
 app.secret_key = "v3ry_s3cr37_k3y_wh1ch_y0u_w1ll_n3v3r_gu355"
 
-DATABASE_URL = "http://localhost:5001"
+DATABASE_URL = "http://yl-web-api.herokuapp.com"
 
 
 def get_user_data():
