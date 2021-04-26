@@ -3,7 +3,7 @@
     {%  if not error %}
         <h1 class="text-success text-center">{{ video.title }}</h1>
         <div style="display: flex; justify-content: center">
-            <video controls style="width: 100%; height: auto">
+            <video controls style="width: 100%; height: auto" autoplay>
                 <source src="{{ video.url }}">
             </video>
         </div>
