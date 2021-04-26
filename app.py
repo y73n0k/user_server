@@ -10,7 +10,7 @@ from forms.videos import VideoForm
 app = Flask(__name__)
 app.secret_key = "v3ry_s3cr37_k3y_wh1ch_y0u_w1ll_n3v3r_gu355"
 
-DATABASE_URL = "http://127.0.0.1:4610"
+DATABASE_URL = "https://yl-web-api.herokuapp.com"
 
 
 def get_user_data():
@@ -258,4 +258,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=os.environ.get("PORT", 5000))
