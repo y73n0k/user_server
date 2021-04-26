@@ -7,9 +7,11 @@
         <table class="table table-hover">
         <tbody>
         {% for video in user.videos %}
+         <tr>
             <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
             <td>{{ video.description }}</td>
             <td>{{ video.upload_date }}</td>
+         </tr>
         {% endfor %}
         </tbody>
     {% endif %}
