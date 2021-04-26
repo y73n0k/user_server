@@ -7,10 +7,12 @@
                 <table class="table table-hover">
                     <tbody>
                     {% for video in videos %}
+                    <tr>
                         <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
                         <td>{{ video.description }}</td>
                         <td>{{ video.upload_date }}</td>
                         <td><a class="btn btn-danger" href="{{ url_for('delete_video', short_name=video.short_name) }}" role="button">Удалить</a></td>
+                    </tr>
                     {% endfor %}
                     </tbody>
             </div>
