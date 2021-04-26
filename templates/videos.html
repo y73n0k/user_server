@@ -7,11 +7,12 @@
             <td><a href="{{ url_for('watch', slug=video.short_name) }}">{{ video.title }}</a></td>
             <td>{{ video.description }}</td>
             <td>{{ video.upload_date }}</td>
-            <td>{% for author in video.authors %}
-               <a href="{{ url_for('user', slug=author.slug) }}">{{ author.slug }}</a></td>
-         <tr>
+            <td>
+            {% for author in video.authors %}
+                <a href="{{ url_for('user', slug=author.slug) }}">{{ author.slug }}</a></td>
             {% endfor %}
-
+            </td>
+         <tr>
         {% endfor %}
         </tbody>
     </table>
